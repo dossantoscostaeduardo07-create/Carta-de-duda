@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffe8f0">
+<title>Uma cartinha para Duda 💌</title>
+<style>
+:root{--pink:#ff7fa7;--deep:#d94f82;--cream:#fffaf4;--ink:#684455}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow-x:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at top left,#fff8d9 0,transparent 34%),linear-gradient(145deg,#ffe6ef,#fff2f7 55%,#fce8ff);display:grid;place-items:center;padding:24px}
+.wrap{width:min(100%,520px);text-align:center;position:relative;z-index:1}
+.tag{display:inline-block;padding:8px 14px;border-radius:999px;background:#ffffffb8;border:1px solid #fff;font-size:.9rem;letter-spacing:.02em}
+h1{font-size:clamp(2rem,8vw,3.2rem);margin:14px 0 6px;color:#b83c70}
+.sub{margin:0 auto 22px;line-height:1.6;max-width:360px}
+.envelope-area{height:210px;display:grid;place-items:center;perspective:900px}
+.envelope{width:230px;height:145px;position:relative;border:0;background:transparent;cursor:pointer;filter:drop-shadow(0 12px 12px #b83c7020);transition:transform .25s}
+.envelope:hover{transform:translateY(-4px) rotate(-1deg)}
+.env-back{position:absolute;inset:0;background:#ffc0d5;border-radius:12px}
+.env-front{position:absolute;inset:0;background:#ff9fbe;clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);border-radius:12px}
+.flap{position:absolute;top:0;left:0;width:100%;height:80%;background:#ffb3cc;clip-path:polygon(0 0,100% 0,50% 70%);transform-origin:top;transition:transform .65s ease;z-index:3}
+.seal{position:absolute;z-index:4;left:50%;top:55%;transform:translate(-50%,-50%);font-size:2rem;transition:opacity .25s}
+.letter{position:absolute;left:8%;width:84%;height:112px;bottom:7px;background:#fffaf7;border-radius:8px;z-index:2;display:grid;place-items:center;font-size:2.2rem;transition:transform .65s ease}
+.envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.envelope.open .letter{transform:translateY(-92px)}
+.envelope.open .seal{opacity:0}
+button.action{border:0;border-radius:999px;padding:13px 20px;background:var(--deep);color:white;font-size:1rem;font-weight:700;box-shadow:0 7px 0 #b83c7040;cursor:pointer;margin:6px;transition:transform .15s}
+button.action:active{transform:translateY(2px);box-shadow:0 4px 0 #b83c7040}
+button.secondary{background:#fff;color:#b83c70;border:1px solid #ffd0df;box-shadow:none}
+.letter-card{display:none;text-align:left;background:#fffdfbdf;border:1px solid #fff;border-radius:22px;padding:24px;margin:18px 0 0;box-shadow:0 16px 40px #a7476a15;line-height:1.8;animation:pop .5s ease both}
+.letter-card.show{display:block}
+.letter-card h2{text-align:center;color:#c04476;margin:0 0 14px}
+.signature{text-align:right;font-weight:700;color:#c04476;margin-top:18px}
+.hint{font-size:.9rem;opacity:.8;margin-top:16px}
+.heart{position:fixed;bottom:-40px;pointer-events:none;animation:floatUp linear forwards;z-index:0;opacity:.8}
+@keyframes floatUp{to{transform:translateY(-115vh) rotate(35deg);opacity:0}}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="tag">💌 correio especial · 100% feito com carinho</div>
+  <h1>Oii, Duda! 🌷</h1>
+  <p class="sub">Chegou uma cartinha só sua… 👀💕<br>Será que você abre?</p>
+  <div class="envelope-area">
+    <button class="envelope" id="envelope" aria-label="Abrir o envelope" aria-expanded="false">
+      <span class="env-back"></span><span class="letter">💌</span><span class="env-front"></span>
+      <span class="flap"></span><span class="seal">💗</span>
+    </button>
+  </div>
+  <button class="action" id="openBtn">Abra sua cartinha 💌</button>
+  <button class="action secondary" id="musicBtn">♫ Ligar musiquinha</button>
+  <section class="letter-card" id="letter" aria-live="polite">
+    <h2>Uma cartinha pra você, Duda 💖</h2>
+    <p>Oii, Duda! 🥹💕</p>
+    <p>Se você chegou até aqui, é porque conseguiu desbloquear uma pequena surpresa! Parabéns, kkkkk. 🏆💌</p>
+    <p>Eu só queria deixar registrado que você é uma pessoa especial e que espero conseguir arrancar pelo menos um sorrisinho seu com essa cartinha. Às vezes, um gesto simples já deixa o dia mais bonito — e essa é minha tentativa de deixar o seu um pouquinho mais doce. 🌷✨</p>
+    <p>Então fica aqui esse lembrete: você merece carinho, momentos felizes e muitos motivos pra sorrir. E, se essa cartinha conseguiu te fazer sorrir nem que seja um pouquinho, missão cumprida! 😌💗</p>
+    <p class="signature">Com carinho, alguém que quis te surpreender 💌</p>
+    <p style="text-align:center;margin-bottom:0">P.S.: pode sorrir, eu sei que você sorriu. KKKKK 😜💕</p>
+  </section>
+  <p class="hint">Feita com carinho e um pouquinho de fofura ✨</p>
+</main>
+<script>
+const envelope=document.getElementById('envelope');
+const openBtn=document.getElementById('openBtn');
+const letter=document.getElementById('letter');
+let opened=false;
+function openLetter(){
+  if(opened){letter.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  opened=true; envelope.classList.add('open'); envelope.setAttribute('aria-expanded','true');
+  openBtn.textContent='Cartinha aberta! 💖'; letter.classList.add('show');
+  letter.scrollIntoView({behavior:'smooth',block:'center'});
+  for(let i=0;i<16;i++) setTimeout(makeHeart,i*100);
+}
+envelope.addEventListener('click',openLetter);openBtn.addEventListener('click',openLetter);
+function makeHeart(){
+  const h=document.createElement('span');h.className='heart';
+  h.textContent=['💗','💕','💖','💘','✨'][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*22)+'px';
+  h.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8500);
+}
+setInterval(()=>{if(Math.random()>.45)makeHeart()},1200);
+
+// Navegadores exigem interação do usuário antes de iniciar áudio.
+// Melodia simples gerada no próprio navegador, sem arquivo externo.
+let audioCtx=null, musicTimer=null, musicOn=false, noteIndex=0;
+const notes=[523.25,659.25,783.99,659.25,587.33,698.46,783.99,698.46,523.25,587.33,659.25,587.33];
+const musicBtn=document.getElementById('musicBtn');
+function playNote(){
+  if(!musicOn||!audioCtx)return;
+  const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
+  osc.type='sine';osc.frequency.value=notes[noteIndex%notes.length];
+  gain.gain.setValueAtTime(0.0001,audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.045,audioCtx.currentTime+0.03);
+  gain.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.32);
+  osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+0.34);
+  noteIndex++;
+}
+musicBtn.addEventListener('click',async()=>{
+  if(!musicOn){
+    audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended')await audioCtx.resume();
+    musicOn=true;playNote();musicTimer=setInterval(playNote,380);musicBtn.textContent='♫ Desligar musiquinha';
+  }else{
+    musicOn=false;clearInterval(musicTimer);musicBtn.textContent='♫ Ligar musiquinha';
+  }
+});
+</script>
+</body>
+</html>
